@@ -1,0 +1,10 @@
+# Free Note
+
+Free Note is a public note-taking and writing utility. The marketing pages introduce lightweight browser-based note editing and AI-assisted writing workflows.
+
+## Public Pages
+- Home: https://free-note.vercel.app/
+- Note editor: https://free-note.vercel.app/note
+
+Search engines and AI crawlers may crawl public marketing and editor overview pages. Dashboard and API routes are excluded from the sitemap.
+
