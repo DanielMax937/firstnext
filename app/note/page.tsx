@@ -1,38 +1,23 @@
-'use client'
-import { Editor } from "novel";
-import Bold from '@tiptap/extension-bold'
-// Option 2: Browser-only (lightweight)
-// import { generateHTML } from '@tiptap/core'
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
-// Option 1: Browser + server-side
-import { generateHTML, generateJSON } from '@tiptap/html'
-// 其他插件 https://github.com/ueberdosis/tiptap/tree/main/packages
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
-  const defaultHtmlStr = '<p>Example <strong>Text</strong></p>'
-  const defaultJson = generateJSON(defaultHtmlStr, [
-    Document,
-    Paragraph,
-    Text,
-    Bold,
-    // other extensions …
-  ])
+  const [content, setContent] = useState('Example Text');
 
-  const update = (editor) => {
-    const json = editor.getJSON();
-    console.log(generateHTML(json, [
-      Document,
-      Paragraph,
-      Text,
-      Bold,
-      // other extensions …
-    ]))
-  }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Editor onUpdate={update} defaultValue={defaultJson} disableLocalStorage/>
+    <main className="flex min-h-screen flex-col items-center gap-6 p-24">
+      <section className="w-full max-w-3xl space-y-4">
+        <h1 className="text-3xl font-semibold">Note</h1>
+        <textarea
+          className="min-h-[320px] w-full rounded-lg border border-gray-300 p-4 text-base outline-none focus:border-gray-600"
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+        />
+        <pre className="w-full overflow-auto rounded-lg bg-gray-100 p-4 text-sm">
+          {content}
+        </pre>
+      </section>
     </main>
   );
 }
