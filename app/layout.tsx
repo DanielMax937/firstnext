@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { useSelectedLayoutSegment } from 'next/navigation'
+import Script from "next/script";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,17 @@ export default function RootLayout({
     <html lang="en">  
       <body className={inter.className}>
         {children}
-      </body>
+      {process.env.NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN ? (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({
+              token: process.env.NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN,
+            })}
+            strategy="afterInteractive"
+          />
+        ) : null}
+</body>
     </html>
   )
 }
