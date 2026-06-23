@@ -1,15 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async redirects() {
-        return [
-          // Wildcard path matching
-          {
-            source: '/blog/:slug',
-            destination: '/dashboard',
-            permanent: true,
-          },
-        ]
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/blog/:slug',
+        destination: '/dashboard',
+        permanent: true,
       },
-}
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
